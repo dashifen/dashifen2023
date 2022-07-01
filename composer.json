@@ -17,6 +17,7 @@
     }
   },
   "require": {
+    "dashifen/bumper": "^1.0",
     "dashifen/wp-handler": "^10.11",
     "dashifen/wp-templates": "^5.1",
     "timber/timber": "^1.19"
@@ -27,5 +28,13 @@
     "allow-plugins": {
       "composer/installers": true
     }
+  },
+  "extra": {
+    "bump": [
+      "style.css"
+    ]
+  },
+  "scripts": {
+    "bump": "php vendor/dashifen/bumper/bump.php"
   }
 }
