@@ -83,11 +83,7 @@ class Theme extends AbstractThemeHandler
    */
   protected function prepareTheme(): void
   {
-    register_nav_menus([
-      'main'   => 'Main Menu',
-      'footer' => 'Footer Menu',
-    ]);
-    
+    register_nav_menus(['main' => 'Main Menu', 'footer' => 'Footer Menu']);
     add_theme_support('post-thumbnails', get_post_types(['public' => true]));
   }
   

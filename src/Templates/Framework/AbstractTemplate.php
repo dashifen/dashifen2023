@@ -32,15 +32,9 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
     $this->postId = get_the_ID();
     
     try {
-      $twig = $this->getTwig();
-      $context = $this->getContext();
-      parent::__construct($twig, $context);
+      parent::__construct($this->getTwig(), $this->getContext());
     } catch (BaselineTemplateException $e) {
-      throw new TemplateException(
-        $e->getMessage(),
-        $e->getCode(),
-        $e
-      );
+      throw new TemplateException($e->getMessage(), $e->getCode(), $e);
     }
   }
   
