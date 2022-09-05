@@ -5,7 +5,11 @@
   "name": "dashifen2023",
   "description": "A theme for dashifen.com (and, maybe, subdomains thereof) for 2023 and beyond.",
   "devDependencies": {
-    "bourbon": "^7.2.0",
-    "include-media": "^1.4.10"
+    "normalize.css": "^8.0",
+    "sass": "^1.54.8"
+  },
+  "scripts": {
+    "sass-dev": "sass --watch --update --style=expanded assets/styles:assets",
+    "sass-prod": "sass --no-source-map --style=compressed assets/styles:assets"
   }
 }

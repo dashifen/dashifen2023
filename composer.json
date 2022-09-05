@@ -35,6 +35,6 @@
     ]
   },
   "scripts": {
-    "bump": "php vendor/dashifen/bumper/bump.php"
+    "bumper": "php vendor/dashifen/bumper/bump.php"
   }
 }
