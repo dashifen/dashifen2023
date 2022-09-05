@@ -16,7 +16,9 @@ class TemplateFactory
    */
   public static function produceTemplate(string $template): AbstractTemplate
   {
-    if (!class_exists($template)) {
+    $namespace = 'Dashifen\\Dashifen2023\\Templates\\' . $template;
+    
+    if (!class_exists($namespace)) {
       throw new TemplateException('Unknown template: ' . $template,
         TemplateException::UNKNOWN_TEMPLATE);
     }
@@ -25,6 +27,6 @@ class TemplateFactory
     // child of our AbstractTemplate object.  if not, PHP will help us fix the
     // problem when the return type hint fails.
     
-    return new $template;
+    return new $namespace;
   }
 }

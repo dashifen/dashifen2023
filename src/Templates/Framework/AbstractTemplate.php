@@ -114,7 +114,7 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
     
     $twigs = array_keys(iterator_to_array($files));
     if (substr(PHP_OS, 0, 3) === 'WIN') {
-      array_walk($twigs, fn (&$twig) => $twig = str_replace('\\', '/', $twig));
+      array_walk($twigs, fn(&$twig) => $twig = str_replace('\\', '/', $twig));
     }
     
     // our map here splits the full path names based on the folder in which
@@ -125,7 +125,7 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
     
     $twigs = array_flip(
       array_map(
-        fn($twig) => '@' . explode('assets/twigs', $twig)[1],
+        fn($twig) => '@' . explode('assets/twigs/', $twig)[1],
         $twigs
       )
     );
@@ -168,10 +168,10 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
    */
   private function getContext(): array
   {
-    return [
-      'site' => ($siteContext = $this->getSiteContext()),
-      'page' => $this->getTemplateContext($siteContext),
-    ];
+    return array_merge(
+      ($siteContext = $this->getSiteContext()),
+      ['page' => $this->getTemplateContext($siteContext)]
+    );
   }
   
   /**
@@ -187,9 +187,9 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
   private function getSiteContext(): array
   {
     return [
-      'year'  => date('Y'),
-      'twig'  => basename($this->getTwig(), '.twig'),
-      'site'  => [
+      'year' => date('Y'),
+      'twig' => basename($this->getTwig(), '.twig'),
+      'site' => [
         'url'    => home_url(),
         'title'  => 'Dashifen.com',
         'images' => get_stylesheet_directory_uri() . '/assets/images/',
@@ -238,21 +238,19 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
       throw new TemplateException('Cannot compile without a template\'s context.',
         TemplateException::UNKNOWN_CONTEXT);
     }
-    
-    $compilation = Timber::fetch($file, $context);
-    
+   
     if ($debug || self::isDebug()) {
-      $compilation .= '<--' . PHP_EOL . print_r($context, true) . PHP_EOL . '-->';
+      $context['page']['context'] = print_r($context, true);
     }
     
-    return $compilation;
+    return Timber::fetch($file, $context);
   }
   
   /**
    * getOptionNamePrefix
    *
    * Returns the prefix that is used to differentiate the options for this
-   * handler's sphere of influene from others.
+   * handler's sphere of influence from others.
    *
    * @return string
    */

@@ -15,7 +15,7 @@ class Homepage extends AbstractTemplate
    */
   protected function getTemplateTwig(): string
   {
-    return '@templates/index.twig';
+    return '@templates/homepage.twig';
   }
   
   /**
