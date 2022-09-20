@@ -4,7 +4,7 @@ namespace Dashifen\Dashifen2023\Templates;
 
 use Dashifen\Dashifen2023\Templates\Framework\AbstractTemplate;
 
-class Homepage extends AbstractTemplate
+class HomepageTemplate extends AbstractTemplate
 {
   /**
    * getTemplateTwig
