@@ -2,22 +2,8 @@
 
 namespace Dashifen\Dashifen2023\Templates;
 
-use Dashifen\Dashifen2023\Templates\Framework\AbstractTemplate;
-
-class HomepageTemplate extends AbstractTemplate
+class HomepageTemplate extends DefaultTemplate
 {
-  /**
-   * getTemplateTwig
-   *
-   * Returns the name of the twig file for this template.
-   *
-   * @return string
-   */
-  protected function getTemplateTwig(): string
-  {
-    return '@templates/homepage.twig';
-  }
-  
   /**
    * getTemplateContext
    *

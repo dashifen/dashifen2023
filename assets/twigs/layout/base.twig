@@ -13,7 +13,19 @@
 <a href="#content" class="screen-reader-text">Skip to the Content</a>
 
 {% include '@partials/header.twig'  %}
-{% include '@partials/content.twig' %}
+
+<main id="content" aria-labelledby="entry-title">
+  {% block page_title %}
+    <header>
+      <h2 id="entry-title">{{ page.title }}</h2>
+    </header>
+  {% endblock %}
+
+  {% block content %}
+    {{ page.content }}
+  {% endblock %}
+</main>
+
 {% include '@partials/footer.twig'  %}
 
 {{ function('wp_footer') }}
