@@ -5,10 +5,13 @@ namespace Dashifen\Dashifen2023\Templates\Framework;
 use RegexIterator;
 use Timber\Timber;
 use FilesystemIterator;
+use Timber\Menu as TimberMenu;
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
 use Dashifen\Dashifen2023\Theme;
+use Dashifen\Repository\RepositoryException;
 use Dashifen\Transformer\TransformerException;
+use Dashifen\Dashifen2023\Repositories\MenuItem;
 use Dashifen\WPHandler\Handlers\HandlerException;
 use Dashifen\WPHandler\Traits\OptionsManagementTrait;
 use Dashifen\WPTemplates\AbstractTemplate as AbstractTimberTemplate;
@@ -26,6 +29,7 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
    * @throws HandlerException
    * @throws TemplateException
    * @throws TransformerException
+   * @throws RepositoryException
    */
   public function __construct()
   {
@@ -159,6 +163,7 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
    * @throws HandlerException
    * @throws TemplateException
    * @throws TransformerException
+   * @throws RepositoryException
    */
   private function getContext(): array
   {
@@ -177,13 +182,14 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
    * @throws HandlerException
    * @throws TemplateException
    * @throws TransformerException
+   * @throws RepositoryException
    */
   private function getSiteContext(): array
   {
     return [
-      'year' => date('Y'),
-      'twig' => basename($this->getTwig(), '.twig'),
-      'site' => [
+      'year'  => date('Y'),
+      'twig'  => basename($this->getTwig(), '.twig'),
+      'site'  => [
         'url'    => home_url(),
         'title'  => 'Dashifen.com',
         'images' => get_stylesheet_directory_uri() . '/assets/images/',
@@ -192,7 +198,28 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
           'src' => 'witch-hat.png',
         ],
       ],
+      'menus' => [
+        'main'   => $this->getMenu('main'),
+        'footer' => $this->getMenu('footer'),
+      ],
     ];
+  }
+  
+  /**
+   * getMenu
+   *
+   * Returns an array of MenuItem objects that define our menu.
+   *
+   * @param string $menuLocation
+   *
+   * @return array
+   * @throws RepositoryException
+   */
+  private function getMenu(string $menuLocation): array
+  {
+    return has_nav_menu($menuLocation)
+      ? array_map(fn($item) => new MenuItem($item), (new TimberMenu($menuLocation))->get_items())
+      : [];
   }
   
   /**
@@ -232,7 +259,7 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
       throw new TemplateException('Cannot compile without a template\'s context.',
         TemplateException::UNKNOWN_CONTEXT);
     }
-   
+    
     if ($debug || self::isDebug()) {
       $context['page']['context'] = print_r($context, true);
     }
