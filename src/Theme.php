@@ -69,6 +69,7 @@ class Theme extends AbstractThemeHandler
    */
   protected function addAssets(): void
   {
+    $this->enqueue('assets/dashifen.min.js');
     $font1 = $this->enqueue('//fonts.googleapis.com/css2?family=El+Messiri&display=swap');
     $font2 = $this->enqueue('//fonts.googleapis.com/css2?family=Roboto&display=swap');
     $this->enqueue('assets/dashifen.css', [$font1, $font2]);
