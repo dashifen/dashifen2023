@@ -1,0 +1,23 @@
+name: Echo message
+on:
+  workflow_dispatch:
+    inputs:
+      hubAddressGroupObject:
+        type: choice
+        description: 'Enter the name of the hub where the entry is added'
+        required: true
+        default: 'AZURE-EUW-XXXXX'
+        options:
+          - 'AZURE-EUW-XXXXX'
+          - 'AZURE-FRC-XXXXX'
+          - 'AZURE-USE-XXXXX'
+          - 'AZURE-FRC-XXXXX'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: WriteMessage
+        run: |
+          echo "${{ github.event.inputs.hubAddressGroupObject }}"
