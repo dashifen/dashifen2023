@@ -12,6 +12,7 @@ use Dashifen\Dashifen2023\Theme;
 use Dashifen\Repository\RepositoryException;
 use Dashifen\Transformer\TransformerException;
 use Dashifen\Dashifen2023\Repositories\MenuItem;
+use Dashifen\WPHandler\Traits\CaseChangingTrait;
 use Dashifen\WPHandler\Handlers\HandlerException;
 use Dashifen\WPHandler\Traits\OptionsManagementTrait;
 use Dashifen\WPTemplates\AbstractTemplate as AbstractTimberTemplate;
@@ -19,6 +20,7 @@ use Dashifen\WPTemplates\TemplateException as BaselineTemplateException;
 
 abstract class AbstractTemplate extends AbstractTimberTemplate
 {
+  use CaseChangingTrait;
   use OptionsManagementTrait;
   
   protected int $postId;
@@ -36,9 +38,16 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
     $this->postId = get_the_ID();
     
     try {
-      parent::__construct($this->getTwig(), $this->getContext());
+      parent::__construct(
+        $this->getTwig(),
+        $this->getContext()
+      );
     } catch (BaselineTemplateException $e) {
-      throw new TemplateException($e->getMessage(), $e->getCode(), $e);
+      throw new TemplateException(
+        $e->getMessage(),
+        $e->getCode(),
+        $e
+      );
     }
   }
   
@@ -71,7 +80,21 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
    *
    * @return string
    */
-  abstract protected function getTemplateTwig(): string;
+  protected function getTemplateTwig(): string
+  {
+    $objectNameParts = explode('\\', static::class);
+    $objectName = array_pop($objectNameParts);
+    
+    // the object's name has the word Template at the end of it.  we don't
+    // want that because it's not a part of our twig filenames.  we'll remove
+    // that, convert the otherwise PascalCase object names to kebab-case, and
+    // add the twig file extension to that result before returning it as a
+    // part of our Timber @templates namespace.
+    
+    $twig = str_replace('Template', '', $objectName);
+    $twig = $this->pascalToCamelCase($twig) . '.twig';
+    return '@templates/' . $twig;
+  }
   
   /**
    * findTwigs
@@ -85,9 +108,9 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
   private function findTwigs(): array
   {
     // in a production environment, we want to avoid a filesystem search as
-    // much as possible.  so, if we're not debugging and it's not a new version
-    // of this theme, then we'll assume that the list of twigs is the same as
-    // last time we searched for them.
+    // much as possible.  so, if we're not debugging, and it's not a new
+    // version of this theme, then we'll assume that the list of twigs is the
+    // same as last time we searched for them.
     
     if (!self::isDebug() && !$this->isNewThemeVersion()) {
       return $this->getOption('twigs', []);
@@ -105,13 +128,14 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
       RegexIterator::USE_KEY                         // based on keys
     );
     
-    // now, we convert our iterator to an array and get it's keys.  these are
-    // the paths to each twig file (the values are the SplFileInfo objects; we
-    // don't need those).  and, if we're on Windows, we do a quick change to
+    // now, we convert our iterator to an array and get its keys; these are
+    // the paths to each twig file. (the values are the SplFileInfo objects; we
+    // don't need those.)  and, if we're on Windows, we do a quick change to
     // the directory separator
     
     $twigs = array_keys(iterator_to_array($files));
-    if (substr(PHP_OS, 0, 3) === 'WIN') {
+    
+    if (str_starts_with(PHP_OS, 'WIN')) {
       array_walk($twigs, fn(&$twig) => $twig = str_replace('\\', '/', $twig));
     }
     
@@ -189,6 +213,7 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
     return [
       'year'  => date('Y'),
       'twig'  => basename($this->getTwig(), '.twig'),
+      'debug' => self::isDebug(),
       'site'  => [
         'url'    => home_url(),
         'title'  => 'Dashifen.com',
@@ -239,7 +264,7 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
    *
    * Compiles either a previously set template file and context or can use
    * the optional parameters here to specify the file and context at the time
-   * of the call and returns it to the calling scope.     *
+   * of the call and returns it to the calling scope.
    *
    * @param bool        $debug
    * @param string|null $file

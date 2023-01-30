@@ -3,17 +3,40 @@
 namespace Dashifen\Dashifen2023;
 
 use Dashifen\WPDebugging\WPDebuggingTrait;
+use Dashifen\WPHandler\Traits\CaseChangingTrait;
 
 class Router
 {
+  use CaseChangingTrait;
   use WPDebuggingTrait;
   
-  public static function getTemplateObjectName(): string
+  /**
+   * getTemplateObjectName
+   *
+   * Uses WordPress core functions to identify what template to use based
+   * on core's understanding of what content we're loading.
+   *
+   * @return string
+   */
+  public function getTemplateObjectName(): string
   {
-    if (is_front_page()) {
-      return 'HomepageTemplate';
-    }
-    
-    return 'DefaultTemplate';
+    return match (true) {
+      is_front_page() => 'HomepageTemplate',
+      is_singular()   => $this->getPostTypeTemplate(),
+      is_404()        => 'FourOhFourTemplate',
+      default         => 'DefaultTemplate',
+    };
+  }
+  
+  /**
+   * getPostTypeTemplate
+   *
+   * Returns the name of the template to use for the current post type.
+   *
+   * @return string
+   */
+  private function getPostTypeTemplate(): string
+  {
+    return $this->kebabToPascalCase(get_post_type()) . 'Template';
   }
 }

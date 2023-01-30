@@ -2,8 +2,12 @@
 
 namespace Dashifen\Dashifen2023\Templates\Framework;
 
+use Dashifen\WPDebugging\WPDebuggingTrait;
+
 class TemplateFactory
 {
+  use WPDebuggingTrait;
+  
   /**
    * produceTemplate
    *

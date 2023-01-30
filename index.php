@@ -8,7 +8,7 @@ use Dashifen\Dashifen2023\Templates\Framework\TemplateFactory;
 use Dashifen\Dashifen2023\Templates\Framework\TemplateException;
 
 try {
-  $templateName = Router::getTemplateObjectName();
+  $templateName = (new Router())->getTemplateObjectName();
   $templateObject = TemplateFactory::produceTemplate($templateName);
   $templateObject->render();
 } catch (TemplateException $e) {

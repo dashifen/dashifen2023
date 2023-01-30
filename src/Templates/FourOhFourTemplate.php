@@ -4,7 +4,7 @@ namespace Dashifen\Dashifen2023\Templates;
 
 use Dashifen\Dashifen2023\Templates\Framework\AbstractTemplate;
 
-class HomepageTemplate extends AbstractTemplate
+class FourOhFourTemplate extends AbstractTemplate
 {
   /**
    * getTemplateContext
@@ -18,6 +18,7 @@ class HomepageTemplate extends AbstractTemplate
    */
   protected function getTemplateContext(array $siteContext): array
   {
-    return ['title' => 'Home'];
+    // TODO: Implement getTemplateContext() method.
   }
+  
 }
