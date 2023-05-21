@@ -5,15 +5,15 @@
   "name": "dashifen2023",
   "description": "A theme for dashifen.com (and, maybe, subdomains thereof) for 2023 and beyond.",
   "devDependencies": {
-    "@vue/compiler-sfc": "^3.2.45",
-    "css-loader": "^6.7.2",
-    "mini-css-extract-plugin": "^2.7.2",
+    "@vue/compiler-sfc": "^3.3",
+    "css-loader": "^6.7",
+    "mini-css-extract-plugin": "^2.7",
     "normalize.css": "^8.0",
-    "sass": "^1.54.8",
-    "vue": "^3.2.45",
-    "vue-loader": "^17.0.1",
-    "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1"
+    "sass": "^1.62",
+    "vue": "^3.3",
+    "vue-loader": "^17.1",
+    "webpack": "^5.83",
+    "webpack-cli": "^5.1"
   },
   "scripts": {
     "sass-dev": "sass --watch --update --style=expanded assets/styles:assets",

@@ -333,7 +333,7 @@ template {
 html {
   box-sizing: border-box;
   color: #060607;
-  font: normal 125%/1.6 "Roboto", sans-serif;
+  font: normal 125%/1.6 "Noto Sans", sans-serif;
 }
 
 *, *::before, *::after {
@@ -358,9 +358,9 @@ nav .menu {
 }
 
 #page-title {
-  background: #5d2189;
+  background-color: #5d2189;
   color: #ffffff;
-  font-family: "El Messiri", serif;
+  font-family: Kreon, serif;
   font-size: 2rem;
   margin: 0;
   text-align: center;

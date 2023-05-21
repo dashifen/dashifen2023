@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7f9910fc2fcb4a27a985cbc16e206fb7",
+    "content-hash": "0732a98ef5df704ee0e1387a7f6b8665",
     "packages": [
         {
             "name": "altorouter/altorouter",
@@ -213,16 +213,16 @@
         },
         {
             "name": "dashifen/bumper",
-            "version": "1.0.1",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dashifen/bumper.git",
-                "reference": "4500ef91342efbc0e2602fbdb146708d166785f8"
+                "reference": "0c9f32c2f582ebc370671a34223089c4772fb477"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dashifen/bumper/zipball/4500ef91342efbc0e2602fbdb146708d166785f8",
-                "reference": "4500ef91342efbc0e2602fbdb146708d166785f8",
+                "url": "https://api.github.com/repos/dashifen/bumper/zipball/0c9f32c2f582ebc370671a34223089c4772fb477",
+                "reference": "0c9f32c2f582ebc370671a34223089c4772fb477",
                 "shasum": ""
             },
             "require": {
@@ -251,9 +251,9 @@
             "description": "A PHP script that uses the current Git branch name to update version numbers in a list of files.",
             "support": {
                 "issues": "https://github.com/dashifen/bumper/issues",
-                "source": "https://github.com/dashifen/bumper/tree/1.0.1"
+                "source": "https://github.com/dashifen/bumper/tree/1.0.3"
             },
-            "time": "2022-07-01T16:51:22+00:00"
+            "time": "2023-05-20T20:00:25+00:00"
         },
         {
             "name": "dashifen/case-changing-trait",
@@ -630,16 +630,16 @@
         },
         {
             "name": "dashifen/wp-handler",
-            "version": "10.11.3",
+            "version": "10.11.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dashifen/wp-handler.git",
-                "reference": "a0a329b9bb185c7a5b9162baa965e231dd37adcc"
+                "reference": "a7846165cf03fb9e3247ed641c5ba789c2b08901"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dashifen/wp-handler/zipball/a0a329b9bb185c7a5b9162baa965e231dd37adcc",
-                "reference": "a0a329b9bb185c7a5b9162baa965e231dd37adcc",
+                "url": "https://api.github.com/repos/dashifen/wp-handler/zipball/a7846165cf03fb9e3247ed641c5ba789c2b08901",
+                "reference": "a7846165cf03fb9e3247ed641c5ba789c2b08901",
                 "shasum": ""
             },
             "require": {
@@ -673,9 +673,9 @@
             "description": "An object to define handlers for various WordPress action and filter hooks using protected methods. ",
             "support": {
                 "issues": "https://github.com/dashifen/wp-handler/issues",
-                "source": "https://github.com/dashifen/wp-handler/tree/10.11.3"
+                "source": "https://github.com/dashifen/wp-handler/tree/10.11.4"
             },
-            "time": "2022-09-09T12:07:13+00:00"
+            "time": "2023-03-29T12:51:23+00:00"
         },
         {
             "name": "dashifen/wp-templates",
@@ -1160,16 +1160,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v2.15.4",
+            "version": "v2.15.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "3e059001d6d597dd50ea7c74dd2464b4adea48d3"
+                "reference": "fc02a6af3eeb97c4bf5650debc76c2eda85ac22e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/3e059001d6d597dd50ea7c74dd2464b4adea48d3",
-                "reference": "3e059001d6d597dd50ea7c74dd2464b4adea48d3",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/fc02a6af3eeb97c4bf5650debc76c2eda85ac22e",
+                "reference": "fc02a6af3eeb97c4bf5650debc76c2eda85ac22e",
                 "shasum": ""
             },
             "require": {
@@ -1224,7 +1224,7 @@
             ],
             "support": {
                 "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/v2.15.4"
+                "source": "https://github.com/twigphp/Twig/tree/v2.15.5"
             },
             "funding": [
                 {
@@ -1236,7 +1236,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-12-27T12:26:20+00:00"
+            "time": "2023-05-03T17:49:41+00:00"
         },
         {
             "name": "upstatement/routes",
@@ -1301,7 +1301,9 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": "^8"
+    },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"
 }

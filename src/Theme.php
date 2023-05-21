@@ -23,8 +23,8 @@ class Theme extends AbstractThemeHandler
   public function initialize(): void
   {
     if (!$this->isInitialized()) {
+      $this->addAction('init', 'initializeAgents', 1);
       $this->addFilter('timber/loader/loader', 'addTimberNamespaces');
-      $this->addAction('wp_enqueue_scripts', 'addAssets');
       $this->addAction('after_setup_theme', 'prepareTheme');
     }
   }
@@ -60,24 +60,10 @@ class Theme extends AbstractThemeHandler
   }
   
   /**
-   * addAssets
-   *
-   * Adds the scripts and styles for this theme into the WordPress assets
-   * queue.
-   *
-   * @return void
-   */
-  protected function addAssets(): void
-  {
-    $font1 = $this->enqueue('//fonts.googleapis.com/css2?family=El+Messiri&display=swap');
-    $font2 = $this->enqueue('//fonts.googleapis.com/css2?family=Roboto&display=swap');
-    $this->enqueue('assets/dashifen.css', [$font1, $font2]);
-  }
-  
-  /**
    * prepareTheme
    *
-   * Prepares the theme by specifying what it supports and adding menus.
+   * Specifies additional WordPress features that our theme supports as well
+   * as registers menus.
    *
    * @return void
    */

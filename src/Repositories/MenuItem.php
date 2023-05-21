@@ -7,6 +7,10 @@ use Timber\MenuItem as TimberMenuItem;
 use Dashifen\Repository\RepositoryException;
 
 /**
+ * MenuItem
+ *
+ * The MenuItem repository receives information from Timber
+ *
  * @property-read array  $classes
  * @property-read array  $children
  * @property-read bool   $current
