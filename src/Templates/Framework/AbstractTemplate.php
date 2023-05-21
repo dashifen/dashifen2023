@@ -10,6 +10,7 @@ use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
 use Dashifen\Dashifen2023\Theme;
 use Dashifen\Repository\RepositoryException;
+use Dashifen\Dashifen2023\Repositories\Song;
 use Dashifen\Transformer\TransformerException;
 use Dashifen\Dashifen2023\Repositories\MenuItem;
 use Dashifen\WPHandler\Traits\CaseChangingTrait;
@@ -193,7 +194,10 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
   {
     $siteContext = $this->getSiteContext();
     $pageContext = $this->getTemplateContext($siteContext);
-    return array_merge($siteContext, ['page' => $pageContext]);
+    return array_merge($siteContext, [
+      'page' => $pageContext,
+      'home' => is_front_page(),
+    ]);
   }
   
   /**
@@ -221,6 +225,7 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
           'alt' => 'a witch\'s hat with a purple band and a gold buckle',
           'src' => 'witch-hat.png',
         ],
+        'song'   => new Song(),
       ],
       'menus' => [
         'main'   => $this->getMenu('main'),
@@ -255,6 +260,8 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
     $menu = new TimberMenu($menuLocation);
     $mapper = fn($item) => new MenuItem($item);
     return array_map($mapper, $menu->get_items());
+    
+    
   }
   
   /**

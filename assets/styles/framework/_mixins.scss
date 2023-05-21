@@ -5,6 +5,11 @@
   @return #{$remSize}rem;
 }
 
+@mixin container {
+  padding-left: 5rem;
+  padding-right: 5rem;
+}
+
 @mixin atFullSize {
   @media only screen and (min-width: 1440px) {
     @content;

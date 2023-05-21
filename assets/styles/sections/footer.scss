@@ -1,0 +1,33 @@
+.site-footer {
+  background: $purple;
+  border-top: 1px solid $black;
+  color: $white;
+  font-size: .75rem;
+  padding-bottom: 1em;
+  text-align: center;
+
+  .menu-container {
+    .menu {
+      justify-content: center;
+
+      a {
+        color: $white;
+      }
+    }
+  }
+}
+
+.recent-song {
+  font-size: rem(12px);
+  line-height: 1.5rem;
+  padding-right: 5rem;
+  position: absolute;
+  text-align: right;
+  top: -1.5rem;
+  width: 100%;
+
+  .label {
+    color: $purple;
+    font-weight: bold;
+  }
+}

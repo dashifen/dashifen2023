@@ -1,7 +1,29 @@
 <footer class="site-footer" role="contentinfo">
-  {% block footer %}
-  {% endblock %}
+  <p class="copyright">Copyright &copy; {{ year }} David Dashifen Kees</p>
+  {% include "@partials/menu.twig" with {
+    'menu': menus.footer,
+    'id': 'footer-menu',
+    'label': 'Footer Navigation',
+    'noChildren': 1,
+  } %}
 </footer>
+
+<div class="recent-song">
+  {% if site.song.track is not empty %}
+
+    <span class="label">
+      {% if site.song.current %}
+        Currently Listening:
+      {% else %}
+        Recently Listened:
+      {% endif %}
+    </span>
+
+    <span class="track">{{ site.song.track }}</span> by
+    <span class="artist">{{ site.song.artist }}</span>
+
+  {% endif %}
+</div>
 
 {% if debug %}
   <!-- {{ page.context }} -->

@@ -23,9 +23,12 @@ a {
 
 body {
   font-size: rem(18px);
+  position: relative;
 }
 
 nav .menu {
+  display: flex;
+  gap: 1rem;
   list-style-type: none;
   margin: 0;
   padding: 0;

@@ -1,14 +1,13 @@
 <header class="banner" role="banner" aria-labelledby="page-title">
-  {% block banner %}
-    <a href="#main-menu" class="" aria-label="open main menu" aria-controls="main-menu"></a>
-    <h1 id="page-title">David Dashifen Kees</h1>
+    <p id="page-title">David Dashifen Kees</p>
     <img class="logo" alt="{{ site.logo.alt }}" src="{{ site.images ~ site.logo.src }}">
 
+
     {% include "@partials/menu.twig" with {
-      'menu'  : menus.main,
-      'id'    : 'main-menu',
-      'label' : 'Main Menu'
+      'menu': menus.main,
+      'id': 'main-menu',
+      'label': 'Main Menu',
+      'noChildren': 1,
     } %}
 
-  {% endblock %}
 </header>

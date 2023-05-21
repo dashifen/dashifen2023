@@ -5,29 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ page.title ~ ' | ' ~ site.title }}</title>
   <link rel="icon" href="{{ site.images ~ site.logo.src }}">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
   {{ function('wp_head') }}
 </head>
 <body {{ function('body_class') }}>
-  <a href="#content" class="screen-reader-text">Skip to the Content</a>
+<a href="#content" class="screen-reader-text">Skip to the Content</a>
 
-  {% include '@partials/header.twig'  %}
+{% include '@partials/header.twig' %}
 
-  <main id="content" aria-labelledby="entry-title">
-    {% block page_title %}
-      <header>
-        <h2 id="entry-title">{{ page.title }}</h2>
-      </header>
-    {% endblock %}
+<main id="content" aria-labelledby="entry-title">
+  {% block page_title %}
+    <header>
+      <h2 id="entry-title">{{ page.title }}</h2>
+    </header>
+  {% endblock %}
 
-    {% block content %}
-      {{ page.content }}
-    {% endblock %}
-  </main>
+  {% block content %}
+    {{ page.content }}
+  {% endblock %}
+</main>
 
-  {% include '@partials/footer.twig'  %}
+{% include '@partials/footer.twig' %}
 
-  {{ function('wp_footer') }}
+{{ function('wp_footer') }}
 </body>
 </html>

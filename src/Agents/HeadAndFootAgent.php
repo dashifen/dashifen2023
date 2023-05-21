@@ -83,6 +83,6 @@ class HeadAndFootAgent extends AbstractThemeAgent
   {
     return !is_front_page()
       ? sprintf('%s | %s', get_the_title(), 'Dashifen.com')
-      : 'Dashifen.com';
+      : 'Welcome | Dashifen.com';
   }
 }

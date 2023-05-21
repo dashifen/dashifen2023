@@ -349,21 +349,89 @@ a:active, a:focus, a:hover {
 
 body {
   font-size: 0.9rem;
+  position: relative;
 }
 
 nav .menu {
+  display: flex;
+  gap: 1rem;
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
+.banner {
+  padding-left: 5rem;
+  padding-right: 5rem;
+  align-items: center;
+  border: solid #dddddd;
+  border-width: 1px 0;
+  display: grid;
+  grid-template-areas: "logo title menu";
+  grid-template-columns: 50px 1fr 1fr;
+  grid-gap: 1rem;
+  margin-top: 1.5rem;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+}
+.banner .logo {
+  grid-area: logo;
+  width: 50px;
+}
+
 #page-title {
-  background-color: #5d2189;
-  color: #ffffff;
   font-family: Kreon, serif;
-  font-size: 2rem;
+  font-size: 1.5rem;
+  grid-area: title;
   margin: 0;
+}
+
+#main-menu {
+  grid-area: menu;
+}
+#main-menu .menu {
+  justify-content: right;
+}
+#main-menu .menu a {
+  color: #060607;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+#main-menu .menu a:hover, #main-menu .menu a:focus {
+  color: #8c6c0c;
+}
+#main-menu .menu a.is-current {
+  color: #5d2189;
+  cursor: pointer;
+}
+
+.site-footer {
+  background: #5d2189;
+  border-top: 1px solid #060607;
+  color: #ffffff;
+  font-size: 0.75rem;
+  padding-bottom: 1em;
   text-align: center;
+}
+.site-footer .menu-container .menu {
+  justify-content: center;
+}
+.site-footer .menu-container .menu a {
+  color: #ffffff;
+}
+
+.recent-song {
+  font-size: 0.6rem;
+  line-height: 1.5rem;
+  padding-right: 5rem;
+  position: absolute;
+  text-align: right;
+  top: -1.5rem;
+  width: 100%;
+}
+.recent-song .label {
+  color: #5d2189;
+  font-weight: bold;
 }
 
 /*!
