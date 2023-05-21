@@ -18,7 +18,6 @@ class FourOhFourTemplate extends AbstractTemplate
    */
   protected function getTemplateContext(array $siteContext): array
   {
-    // TODO: Implement getTemplateContext() method.
+    return [];
   }
-  
 }

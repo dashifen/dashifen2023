@@ -3,10 +3,10 @@
 namespace Dashifen;
 
 use Dashifen\Dashifen2023\Theme;
+use Dashifen\Exception\Exception;
 use Dashifen\Dashifen2023\Agents\SilencingAgent;
 use Dashifen\Dashifen2023\Agents\CoreRemovalAgent;
 use Dashifen\Dashifen2023\Agents\HeadAndFootAgent;
-use Dashifen\WPHandler\Handlers\HandlerException;
 use Dashifen\WPHandler\Agents\Collection\Factory\AgentCollectionFactory;
 
 if (version_compare(PHP_VERSION, '8.0', '<')) {
@@ -38,7 +38,7 @@ if (!class_exists(Theme::class)) {
     $acf->registerAgent(HeadAndFootAgent::class);
     $theme->setAgentCollection($acf);
     $theme->initialize();
-  } catch (HandlerException $e) {
+  } catch (Exception $e) {
     Theme::catcher($e);
   }
 })();

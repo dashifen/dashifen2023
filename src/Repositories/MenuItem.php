@@ -9,7 +9,8 @@ use Dashifen\Repository\RepositoryException;
 /**
  * MenuItem
  *
- * The MenuItem repository receives information from Timber
+ * The MenuItem repository receives information from Timber menu items and
+ * keeps only the information that we cram into our its properties.
  *
  * @property-read array  $classes
  * @property-read array  $children

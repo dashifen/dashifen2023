@@ -125,7 +125,7 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
       new RecursiveIteratorIterator($directory),     // within this iterator
       '/.twig$/',                                    // to .twig files
       RegexIterator::MATCH,                          // keeping only matches
-      RegexIterator::USE_KEY                         // based on keys
+      RegexIterator::USE_KEY                         // based on iterator keys
     );
     
     // now, we convert our iterator to an array and get its keys; these are
@@ -191,10 +191,9 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
    */
   private function getContext(): array
   {
-    return array_merge(
-      ($siteContext = $this->getSiteContext()),
-      ['page' => $this->getTemplateContext($siteContext)]
-    );
+    $siteContext = $this->getSiteContext();
+    $pageContext = $this->getTemplateContext($siteContext);
+    return array_merge($siteContext, ['page' => $pageContext]);
   }
   
   /**
@@ -216,7 +215,7 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
       'debug' => self::isDebug(),
       'site'  => [
         'url'    => home_url(),
-        'title'  => 'Dashifen.com',
+        'title'  => 'David Dashifen Kees',
         'images' => get_stylesheet_directory_uri() . '/assets/images/',
         'logo'   => [
           'alt' => 'a witch\'s hat with a purple band and a gold buckle',
@@ -242,9 +241,20 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
    */
   private function getMenu(string $menuLocation): array
   {
-    return has_nav_menu($menuLocation)
-      ? array_map(fn($item) => new MenuItem($item), (new TimberMenu($menuLocation))->get_items())
-      : [];
+    if (!has_nav_menu($menuLocation)) {
+      return [];
+    }
+    
+    // if we're here, then we have a menu for the specified location.  we
+    // start by getting the Timber version of that menu.  but, this includes a
+    // massive amount of additional information that we don't care about at
+    // this time.  therefore, we convert these Timber menu items into our own
+    // MenuItem repositories which filters these data keeping only what we
+    // need.
+    
+    $menu = new TimberMenu($menuLocation);
+    $mapper = fn($item) => new MenuItem($item);
+    return array_map($mapper, $menu->get_items());
   }
   
   /**
