@@ -12,7 +12,7 @@ use Dashifen\WPHandler\Handlers\HandlerException;
  *
  * A silly name for an agent that turns off everything to do with Comments when
  * using this theme.  This should both help to reduce bloat in the Dashboard
- * but also prevent spammers from trying to cram comments into the databasde
+ * but also prevent spammers from trying to cram comments into the database
  * when we're not going to be looking at them.
  *
  * @property Theme $handler
@@ -56,7 +56,7 @@ class SilencingAgent extends AbstractThemeAgent
    *
    * @return void
    */
-  protected function removeCommentSupport()
+  protected function removeCommentSupport(): void
   {
     // for each of our post types we want to see if they support either
     // comments or trackbacks (or both).  if so, we remove that support.
@@ -91,7 +91,7 @@ class SilencingAgent extends AbstractThemeAgent
    *
    * @return void
    */
-  protected function redirectCommentRequests()
+  protected function redirectCommentRequests(): void
   {
     global $pagenow;
     
@@ -108,7 +108,7 @@ class SilencingAgent extends AbstractThemeAgent
    *
    * @return void
    */
-  protected function removeCommentMenuItem()
+  protected function removeCommentMenuItem(): void
   {
     remove_menu_page('edit-comments.php');
     remove_submenu_page('options-general.php', 'options-discussion.php');

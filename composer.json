@@ -32,7 +32,8 @@
   },
   "extra": {
     "bump": [
-      "style.css"
+      "style.css",
+      "package.json"
     ]
   },
   "scripts": {

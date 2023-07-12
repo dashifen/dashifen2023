@@ -140,9 +140,9 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
       array_walk($twigs, fn(&$twig) => $twig = str_replace('\\', '/', $twig));
     }
     
-    // our map here splits the full path names based on the folder in which
-    // our twigs are located.  then, everything after that folder with the
-    // Timber namespace prefix should match the twig files that our templates
+    // our map here splits the full path names based on the folder in this
+    // theme that contains our twigs.  then, everything after that folder with
+    // the Timber namespace prefix will match the twig files that our templates
     // want to use.  finally, we flip the array to do an O(1) lookup for files
     // instead of O(N) searches.
     
@@ -260,8 +260,6 @@ abstract class AbstractTemplate extends AbstractTimberTemplate
     $menu = new TimberMenu($menuLocation);
     $mapper = fn($item) => new MenuItem($item);
     return array_map($mapper, $menu->get_items());
-    
-    
   }
   
   /**
