@@ -330,10 +330,12 @@ template {
   display: none;
 }
 
-html {
+html, body {
   box-sizing: border-box;
   color: #060607;
   font: normal 125%/1.6 "Noto Sans", sans-serif;
+  height: 100%;
+  padding: 0;
 }
 
 *, *::before, *::after {
@@ -348,7 +350,7 @@ a:active, a:focus, a:hover {
 }
 
 body {
-  font-size: 0.9rem;
+  font-size: 1.125rem;
   position: relative;
 }
 
@@ -381,7 +383,7 @@ nav .menu {
 
 #page-title {
   font-family: Kreon, serif;
-  font-size: 1.5rem;
+  font-size: 1.875rem;
   grid-area: title;
   margin: 0;
 }
@@ -421,17 +423,30 @@ nav .menu {
 }
 
 .recent-song {
-  font-size: 0.6rem;
+  font-size: 0.75rem;
   line-height: 1.5rem;
   padding-right: 5rem;
   position: absolute;
   text-align: right;
-  top: -1.5rem;
+  top: 0;
   width: 100%;
 }
 .recent-song .label {
   color: #5d2189;
   font-weight: bold;
+}
+
+.sticky-footer-wrap {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+.sticky-footer-wrap .banner, .sticky-footer-wrap .site-footer {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.sticky-footer-wrap #content {
+  flex-grow: 1;
 }
 
 /*!
@@ -440,37 +455,37 @@ nav .menu {
  * Use with _mixins.scss imported prior to this file
  */
 .alignnone {
-  margin: 0 1rem 1rem 0;
+  margin: 0 1.25rem 1.25rem 0;
 }
 
 .aligncenter {
   clear: both;
   display: block;
-  margin: 0.25rem auto;
+  margin: 0.3125rem auto;
 }
 
 .alignright {
   float: right;
-  margin: 0.25rem 0 1rem 1rem;
+  margin: 0.3125rem 0 1.25rem 1.25rem;
 }
 
 .alignleft {
   float: left;
-  margin: 0.25rem 1rem 1rem 0;
+  margin: 0.3125rem 1.25rem 1.25rem 0;
 }
 
 a img.alignright {
   float: right;
-  margin: 0.25rem 0 1rem 20px;
+  margin: 0.3125rem 0 1.25rem 20px;
 }
 
 a img.alignnone {
-  margin: 0.25rem 1rem 1rem 0;
+  margin: 0.3125rem 1.25rem 1.25rem 0;
 }
 
 a img.alignleft {
   float: left;
-  margin: 0.25rem 1rem 1rem 0;
+  margin: 0.3125rem 1.25rem 1.25rem 0;
 }
 
 a img.aligncenter {
@@ -483,20 +498,20 @@ a img.aligncenter {
   background: #fff;
   border: 1px solid #f0f0f0;
   max-width: 96%; /* Image does not overflow the content area */
-  padding: 0.25rem 3px 10px;
+  padding: 0.3125rem 3px 10px;
   text-align: center;
 }
 
 .wp-caption.alignnone {
-  margin: 0.25rem 1rem 1rem 0;
+  margin: 0.3125rem 1.25rem 1.25rem 0;
 }
 
 .wp-caption.alignleft {
-  margin: 0.25rem 1rem 1rem 0;
+  margin: 0.3125rem 1.25rem 1.25rem 0;
 }
 
 .wp-caption.alignright {
-  margin: 0.25rem 0 1rem 1rem;
+  margin: 0.3125rem 0 1.25rem 1.25rem;
 }
 
 .wp-caption img {
@@ -509,10 +524,10 @@ a img.aligncenter {
 }
 
 .wp-caption p.wp-caption-text {
-  font-size: 0.55rem;
-  line-height: 0.85rem;
+  font-size: 0.6875rem;
+  line-height: 1.0625rem;
   margin: 0;
-  padding: 0 0.2rem 0.25rem;
+  padding: 0 0.25rem 0.3125rem;
 }
 
 /*# sourceMappingURL=dashifen.css.map */

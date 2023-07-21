@@ -35,7 +35,7 @@ class Theme extends AbstractThemeHandler
       // the template redirect action for it's more typical purpose, i.e. a
       // header redirect, if we need to.
       
-      $this->addAction('template_redirect', 'alwaysIncludeIndex', PHP_INT_MAX);
+      $this->addAction('template_redirect', 'almostAlwaysIncludeIndex', PHP_INT_MAX);
     }
   }
   
@@ -105,13 +105,14 @@ class Theme extends AbstractThemeHandler
   }
   
   /**
-   * alwaysIncludeIndex
+   * almostAlwaysIncludeIndex
    *
-   * Includes the index file for this theme.
+   * Almost always includes the index file for this theme which handles the
+   * routing operations.
    *
    * @return void
    */
-  protected function alwaysIncludeIndex(): void
+  protected function almostAlwaysIncludeIndex(): void
   {
     if (is_trackback() || is_feed() || is_favicon() || is_robots()) {
       

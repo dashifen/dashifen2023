@@ -23,8 +23,7 @@ class TemplateFactory
     $namespaced = 'Dashifen\\Dashifen2023\\Templates\\' . $template;
     
     if (!class_exists($namespaced)) {
-      throw new TemplateException('Unknown template: ' . $template,
-        TemplateException::UNKNOWN_TEMPLATE);
+      $namespaced = 'Dashifen\\Dashifen2023\\Templates\\DefaultTemplate';
     }
     
     // we'll assume that, if it's a class that exists, $template refers to a

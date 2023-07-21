@@ -23,11 +23,26 @@
   padding-right: 5rem;
   position: absolute;
   text-align: right;
-  top: -1.5rem;
+  top: 0;
   width: 100%;
 
   .label {
     color: $purple;
     font-weight: bold;
+  }
+}
+
+.sticky-footer-wrap {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+
+  .banner, .site-footer {
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+
+  #content {
+    flex-grow: 1;
   }
 }
