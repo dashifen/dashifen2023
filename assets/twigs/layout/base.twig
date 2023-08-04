@@ -8,47 +8,21 @@
   {{ function('wp_head') }}
 </head>
 <body {{ function('body_class') }}>
-  <a href="#content" class="screen-reader-text">Skip to the Content</a>
-  <div class="sticky-footer-wrap">
+<a href="#content" class="screen-reader-text">Skip to the Content</a>
+<div class="sticky-footer-wrap">
 
-    {% include '@partials/header.twig' %}
+  {% include '@partials/header.twig' %}
 
-    <main id="content" aria-labelledby="entry-title">
-      {% block page_title %}
-        <header>
-          <h2 id="entry-title">{{ page.title }}</h2>
-        </header>
-      {% endblock %}
+  <main id="content" aria-labelledby="entry-title">
+    {% block page_title %}{% endblock %}
+    {% block content %}{% endblock %}
+  </main>
 
-      {% block content %}
-        {{ page.content }}
-      {% endblock %}
-    </main>
+  {% include '@partials/footer.twig' %}
 
-    {% include '@partials/footer.twig' %}
+</div>
 
-  </div>
-
-
-
-  <div class="recent-song">
-    {% if site.song.track is not empty %}
-
-      <span class="label">
-      {% if site.song.current %}
-        Currently Listening:
-      {% else %}
-        Recently Listened:
-      {% endif %}
-    </span>
-
-      <span class="track">{{ site.song.track }}</span> by
-      <span class="artist">{{ site.song.artist }}</span>
-
-    {% endif %}
-  </div>
-
-  {{ function('wp_footer') }}
+{{ function('wp_footer') }}
 </body>
 </html>
 

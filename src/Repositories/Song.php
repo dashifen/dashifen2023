@@ -83,7 +83,7 @@ class Song extends Repository
         // infrequently needed PHP syntax:
         
         'artist'  => $track->artist->{"#text"},
-        'current' => $track->{"@attr"}->nowplaying === 'true',
+        'current' => ($track->{"@attr"}->nowplaying ?? null) === 'true',
       ];
     } catch (JsonException) {
       $songData = [

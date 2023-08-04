@@ -68,7 +68,7 @@ class HeadAndFootAgent extends AbstractThemeAgent
   protected function addAssets(): void
   {
     $fonts[] = $this->enqueue('//fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
-    $fonts[] = $this->enqueue('//fonts.googleapis.com/css2?family=Kreon&display=swap');
+    $fonts[] = $this->enqueue('//fonts.googleapis.com/css2?family=Righteous&display=swap');
     $this->enqueue('assets/dashifen.css', $fonts);
   }
   

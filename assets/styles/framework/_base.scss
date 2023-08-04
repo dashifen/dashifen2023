@@ -1,13 +1,19 @@
 html, body {
+  background-color: $black;
   box-sizing: border-box;
   color: $black;
-  font: normal 125%/1.6 $sanSerif; // usually 20px
+  font: normal 125%/1.6 $bodyFont; // usually 20px
   height: 100%;
   padding: 0;
-}
+  }
 
 *, *::before, *::after {
   box-sizing: inherit;
+}
+
+body {
+  margin: 0 auto;
+  width: 90%
 }
 
 a {
