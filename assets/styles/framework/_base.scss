@@ -1,3 +1,8 @@
+:root {
+  --default-body-border: 5vw;
+  --default-body-border-radius: 3px;
+}
+
 html, body {
   background-color: $black;
   box-sizing: border-box;
@@ -9,11 +14,6 @@ html, body {
 
 *, *::before, *::after {
   box-sizing: inherit;
-}
-
-body {
-  margin: 0 auto;
-  width: 90%
 }
 
 a {
@@ -40,4 +40,33 @@ nav .menu {
   list-style-type: none;
   margin: 0;
   padding: 0;
+}
+
+.sticky-footer-wrap {
+  border: var(--default-body-border) solid $black;
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: auto  1fr auto;
+  
+  & > * {
+    background-color: $white;
+  }
+  
+  .banner {
+    border-top-left-radius: var(--default-body-border-radius);
+    border-top-right-radius: var(--default-body-border-radius);
+  }
+  
+  .site-footer {
+    border-bottom-left-radius: var(--default-body-border-radius);
+    border-bottom-right-radius: var(--default-body-border-radius);
+  }
+}
+
+body.admin-bar  .sticky-footer-wrap {
+    border-top-width: calc(46px + var(--default-body-border));
+  
+  @include adminBarBreakpoint() {
+    border-top-width: calc(32px + var(--default-body-border));
+  }
 }

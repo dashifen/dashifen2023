@@ -28,14 +28,14 @@
   }
 }
 
-@mixin onTablets {
-  @media only screen and (min-width: 768px) {
+@mixin adminBarBreakpoint {
+  @media only screen and (min-width: 782px) {
     @content;
   }
 }
 
-@mixin adminBarBreakpoint {
-  @media only screen and (max-width: 782px) {
+@mixin onTablets {
+  @media only screen and (min-width: 768px) {
     @content;
   }
 }
